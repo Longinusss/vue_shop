@@ -68,10 +68,10 @@ export default {
     },
     // 表单预验证
     login() {
-      // 回调函数 valid为参数 就是把方法体当成参数传递给另一个方法体，然后另一个方法体内部执行传递的方法体。并支持传入参数
+      // 回调函数 valid为外部函数返回值 就是把方法体当成参数传递给另一个方法体，先执行外部函数
       this.$refs.loginFormRef.validate(async valid => {
         if (!valid) return false
-        // 解构返回值
+        // 解构data返回值并重命名为res
         const { data: res } = await this.$http.post('login', this.loginForm)
         // console.log(res);
         if (res.meta.status !== 200) {
